@@ -17,6 +17,7 @@
 package com.google.youtube.gaming.chat;
 
 import com.google.api.services.youtube.YouTubeScopes;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,7 +35,7 @@ public class Main {
       case "login":
         System.out.print("Paste the client ID JSON from the Google API console:");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String clientSecret = br.readLine();
+        String clientSecret = BoundedLineReader.readLine(br, 5_000_000);
         List<String> scopes = new ArrayList<String>();
         scopes.add(YouTubeScopes.YOUTUBE_FORCE_SSL);
         scopes.add(YouTubeScopes.YOUTUBE);
